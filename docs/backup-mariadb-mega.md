@@ -108,9 +108,10 @@ outside the repository if email alerts are needed.
 
 ## Recovery and operational limits
 
-The script checks gzip integrity and SHA-256 checksums before upload, then
-confirms each local file appears in the MEGA snapshot directory. These checks
-do not prove that a database can be restored. Use
+The script checks each gzip stream, writes SHA-256 checksums into the
+snapshot, and confirms each expected filename appears in the MEGA listing. It
+does not download the remote files to recompute their hashes. These checks do
+not prove that a database can be restored. Use
 [`backup-and-restore.md`](backup-and-restore.md) for an isolated restore
 rehearsal and recovery guidance.
 
