@@ -1,0 +1,50 @@
+# Copy to .github/workflows/drupal-ci.yml only after adapting the paths and
+# commands below to the target repository.
+name: Drupal CI example
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer:v2
+          coverage: none
+
+      - name: Validate Composer metadata
+        run: composer validate --no-check-publish
+
+      - name: Install locked dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Check custom PHP syntax
+        run: find web/modules/custom -type f -name '*.php' -print0 | xargs -0 -r -n 1 php -l
+
+      - name: Run PHPCS when configured
+        run: |
+          if [ -x vendor/bin/phpcs ] && { [ -f phpcs.xml ] || [ -f phpcs.xml.dist ]; }; then
+            vendor/bin/phpcs
+          else
+            echo 'PHPCS not configured; adapt this example to the project.'
+          fi
+
+      - name: Run PHPUnit when configured
+        run: |
+          if [ -x vendor/bin/phpunit ] && { [ -f phpunit.xml ] || [ -f phpunit.xml.dist ]; }; then
+            vendor/bin/phpunit
+          else
+            echo 'PHPUnit not configured; adapt this example to the project.'
+          fi
