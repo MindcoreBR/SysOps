@@ -14,7 +14,7 @@ so review consistency requirements for nontransactional tables.
 ## Requirements
 
 - Bash 4 or later and Python 3.
-- MariaDB/MySQL client and dump utility on the database source host.
+- MariaDB/MySQL client and dump utility on the database source host. The defaults are `mariadb` and `mariadb-dump`; for MySQL, set `MYSQL_BIN=mysql` and `DUMP_BIN=mysqldump` in the cron environment.
 - MEGAcmd authenticated as the account that runs the script.
 - `gzip`, `sha256sum`, `flock`, `timeout`, and `stat` on the backup host.
 - `ssh` when `SSH_TARGET` is configured.
