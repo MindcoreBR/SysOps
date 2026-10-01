@@ -18,6 +18,11 @@ disposable environment before scheduling it or using it against production.
   checksum and compressed stream.
 - [`docs/backup-and-restore.md`](docs/backup-and-restore.md): setup, integrity
   checks, and isolated restore rehearsal.
+- [`scripts/backup-mariadb-mega.sh`](scripts/backup-mariadb-mega.sh): backs up
+  eligible MariaDB/MySQL databases locally or over SSH and uploads snapshots
+  through MEGAcmd.
+- [`docs/backup-mariadb-mega.md`](docs/backup-mariadb-mega.md): MEGA setup,
+  retention, cron configuration, and operational limits.
 - [`examples/github-actions/drupal-ci.yml.example`](examples/github-actions/drupal-ci.yml.example):
   an adaptable CI workflow kept outside the active workflow directory.
 - [`docs/ci-cd.md`](docs/ci-cd.md): CI and deployment safeguards.
