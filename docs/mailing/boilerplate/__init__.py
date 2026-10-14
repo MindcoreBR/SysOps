@@ -1,0 +1,1 @@
+"""Public mailing boilerplate package."""
